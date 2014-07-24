@@ -23,8 +23,14 @@
 	    this.getUsers = function () {	      
 	       return $http.get('/Home/GetUsers', { cache: false });
 	    };
-	    this.getMessage = function () {
-	        return 'Diego Aldo Burlando con Bambina Maria';
+	    this.getMessageHome = function () {
+	        return 'Message from Home Page';
+	    };
+	    this.getMessageAbout = function () {
+	        return 'Message from About Page';
+	    };
+	    this.getMessageContacts = function () {
+	        return 'Message from Contact Page';
 	    };
 	    return this;
 	})
@@ -32,11 +38,11 @@
 	.controller('mainController', ['$scope', '$interval', 'Users', function ($scope, $interval, Users) {
 	    $scope.users = [];
 	    $interval(function () { Users.getUsers().then(function (dataResponse) { $scope.users = dataResponse.data; }); }, 1000);
-	    $scope.message = Users.getMessage();
+	    $scope.message = Users.getMessageHome();
 	}])	
-	.controller('aboutController', function($scope) {
-		$scope.message = 'Look! I am an about page.';
-	}).
-	controller('contactController', function($scope) {
-		$scope.message = 'Contact Diego';
-	});
+	.controller('aboutController',['$scope','Users', function($scope, Users) {
+	    $scope.message = Users.getMessageAbout();
+	}]).
+	controller('contactController', ['$scope','Users', function($scope, Users) {
+	    $scope.message = Users.getMessageContacts();
+	}]);
