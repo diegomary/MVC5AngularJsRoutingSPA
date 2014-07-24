@@ -1,6 +1,6 @@
 // create the module and name it scotchApp
  angular.module('routeApp', ['ngRoute'])
-	// configure our routes
+	// configure  routes
 	.config(function($routeProvider) {
 		$routeProvider
 			// route for the home page
@@ -23,6 +23,9 @@
 	    this.getUsers = function () {	      
 	       return $http.get('/Home/GetUsers', { cache: false });
 	    };
+	    this.getApi = function () {	     
+	        return $http.get('/api/restapi/', { cache: false });
+	    };
 	    this.getMessageHome = function () {
 	        return 'Message from Home Page';
 	    };
@@ -33,8 +36,7 @@
 	        return 'Message from Contact Page';
 	    };
 	    return this;
-	})
-    // create the controller and inject Angular's $scope
+	})   
 	.controller('mainController', ['$scope', '$interval', 'Users', function ($scope, $interval, Users) {
 	    $scope.users = [];
 	    $interval(function () { Users.getUsers().then(function (dataResponse) { $scope.users = dataResponse.data; }); }, 1000);
@@ -42,7 +44,9 @@
 	}])	
 	.controller('aboutController',['$scope','Users', function($scope, Users) {
 	    $scope.message = Users.getMessageAbout();
-	}]).
-	controller('contactController', ['$scope','Users', function($scope, Users) {
+	}])
+    .controller('contactController', ['$scope','$interval', 'Users', function($scope,$interval, Users) {	   
+	    $scope.users = [];
+	    $interval(function () { Users.getApi().then(function (dataResponse) { $scope.users = dataResponse.data; }); }, 1000);
 	    $scope.message = Users.getMessageContacts();
 	}]);

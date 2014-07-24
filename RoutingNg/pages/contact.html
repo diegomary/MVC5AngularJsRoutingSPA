@@ -1,5 +1,21 @@
+<style>
+    .noclose .ui-dialog-titlebar-close {
+        display: none;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+</style>
 <div class="jumbotron text-center">
-	<h1>Contact Page</h1>
-	
-	<p>{{ message }}</p>
+    <h1>Home Page</h1>
+
+    <ul>
+        <li ng-repeat="user in users ">
+            <input type="text" style="width:80px" name="input1" ng-model="user.name" />
+            <input type="text" style="width:80px" name="input2" ng-model="user.city" />
+        </li>
+    </ul>
+
+    <p>{{ message }}</p>
 </div>
