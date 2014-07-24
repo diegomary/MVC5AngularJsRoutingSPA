@@ -19,9 +19,9 @@
 				controller  : 'contactController'
 			});
 	})
-	.factory('Users', function ($http) {
-	    this.getUsers = function () {	      
-	       return $http.get('/Home/GetUsers', { cache: false });
+	.factory('Customers', function ($http) {
+	    this.getCustomers = function () {
+	       return $http.get('/Home/GetCustomers', { cache: false });
 	    };
 	    this.getApi = function () {	     
 	        return $http.get('/api/restapi/', { cache: false });
@@ -37,16 +37,16 @@
 	    };
 	    return this;
 	})   
-	.controller('mainController', ['$scope', '$interval', 'Users', function ($scope, $interval, Users) {
-	    $scope.users = [];
-	    $interval(function () { Users.getUsers().then(function (dataResponse) { $scope.users = dataResponse.data; }); }, 1000);
-	    $scope.message = Users.getMessageHome();
+	.controller('mainController', ['$scope', '$interval', 'Customers', function ($scope, $interval, Customers) {
+	    $scope.customers = [];
+	    $interval(function () { Customers.getCustomers().then(function (dataResponse) { $scope.customers = dataResponse.data; }); }, 1000);
+	    $scope.message = Customers.getMessageHome();
 	}])	
-	.controller('aboutController',['$scope','Users', function($scope, Users) {
-	    $scope.message = Users.getMessageAbout();
+	.controller('aboutController', ['$scope', 'Customers', function ($scope, Customers) {
+	    $scope.message = Customers.getMessageAbout();
 	}])
-    .controller('contactController', ['$scope','$interval', 'Users', function($scope,$interval, Users) {	   
-	    $scope.users = [];
-	    $interval(function () { Users.getApi().then(function (dataResponse) { $scope.users = dataResponse.data; }); }, 1000);
-	    $scope.message = Users.getMessageContacts();
+    .controller('contactController', ['$scope','$interval', 'Customers', function($scope,$interval, Customers) {	   
+	    $scope.customers = [];
+	    $interval(function () { Customers.getApi().then(function (dataResponse) { $scope.customers = dataResponse.data; }); }, 1000);
+	    $scope.message = Customers.getMessageContacts();
 	}]);

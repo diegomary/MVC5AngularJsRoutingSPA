@@ -15,7 +15,7 @@ namespace RoutingNg.Controllers
     public class HomeController : Controller
     {  
         [HttpGet]
-        public JsonResult GetUsers()
+        public System.Web.Mvc.JsonResult GetCustomers()
         {
             List<Customer> th = new List<Customer>();
             th.Add(new Customer { name = "Ziggy stardust", city = "Chicago" });
