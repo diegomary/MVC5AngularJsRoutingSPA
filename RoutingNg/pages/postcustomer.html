@@ -1,0 +1,35 @@
+<style>
+    .Cen {
+        text-align: center;
+    }
+
+    .Cent {
+        margin: 0 auto;
+        text-align: left;
+    }
+</style>
+<div class="Cen jumbotron">
+    <h1>Postcustomer</h1>
+    <!--Note that novalidate is used to disable browser's native form validation.-->
+    <form novalidate>
+        <table class="Cent">
+            <tr>
+                <td>Name: </td>
+                <td><input type="text" ng-model="customer.name" /></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" ng-model="customer.city" /></td>
+            </tr>
+            <tr>            
+            <td> &nbsp;</td>
+            <td> &nbsp;</td>
+            </tr>
+            <tr>
+                <td><button ng-click="reset()">RESET</button>&nbsp;</td>                          
+                <td><button ng-click="save(customer)">SAVE</button></td>
+            </tr>
+        </table>
+    </form>
+    <p>{{ message }}</p>
+</div>

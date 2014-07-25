@@ -6,27 +6,23 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-
+using RoutingNg.Models;
 
 namespace RoutingNg.Controllers
 {
 
-    public class ApiCustomer
-    {
-        public string name { get; set; }
-        public string city { get; set; }
-    }
+    
     public class RestApiController : ApiController
     {
         // GET api/values
-        public System.Web.Http.Results.JsonResult<List<ApiCustomer>> Get()
+        public System.Web.Http.Results.JsonResult<List<Customer>> Get()
         {
-            List<ApiCustomer> th = new List<ApiCustomer>();
-            th.Add(new ApiCustomer { name = "Diego Burlando", city = "Chicago" });
-            th.Add(new ApiCustomer { name = "Heedy Wahlin", city = "Chandler" });
-            th.Add(new ApiCustomer { name = "Dave Jones", city = "Phoenix" });
-            th.Add(new ApiCustomer { name = "Jamie Riley", city = "Atlanta" });
-            th.Add(new ApiCustomer { name = "Thomas Winter", city = "Seattle" });
+            List<Customer> th = new List<Customer>();
+            th.Add(new Customer { name = "Diego Burlando", city = "Chicago" });
+            th.Add(new Customer { name = "Heedy Wahlin", city = "Chandler" });
+            th.Add(new Customer { name = "Dave Jones", city = "Phoenix" });
+            th.Add(new Customer { name = "Jamie Riley", city = "Atlanta" });
+            th.Add(new Customer { name = "Thomas Winter", city = "Seattle" });
             // Please note the JsonSerializerSettings in case of further customization
             //Newtonsoft.Json.JsonSerializerSettings st = new Newtonsoft.Json.JsonSerializerSettings();          
             //return Json(th,st); 
@@ -39,11 +35,13 @@ namespace RoutingNg.Controllers
             return "value";
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        public string Post(Customer value)
         {
+            var a = value;
+            return "Success";
         }
 
+       
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
