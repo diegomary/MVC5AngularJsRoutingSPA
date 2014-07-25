@@ -10,3 +10,7 @@ The server side is implemented in MVC 5 and Web Api 2.
 It can be interesting for people that want to have a skeleton with basic operations.
 
 There is also a very simple implementation of Basic Authentication.
+
+It is worth taking a look at it because the standard MVC routing system is overridden by the Angular Routing system.
+
+The approximation of a Single Page Application.
