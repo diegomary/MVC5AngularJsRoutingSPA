@@ -25,6 +25,11 @@
 		    });
 	})
 	.factory('Customers', function ($http) {
+        // Basic Authentication enforcement
+	    var authInfo  = "username:password";
+	    var encodedData = window.btoa(authInfo);
+	    $http.defaults.headers.common.Authorization = "Basic " + encodedData;
+        //**********************************************************************
 	    this.getCustomers = function () {
 	       return $http.get('/Home/GetCustomers', { cache: false });
 	    };
@@ -41,11 +46,11 @@
 	            data: dataTosend,
 	            headers: { 'Content-Type': 'application/json; charset=utf-8' },
 	        }).
-	               success(function (response) {
-	                   ret = response;
+	               success(function (data, status, headers, config) {
+	                   ret = status;
 	               }).
-	               error(function (response) {
-	                   ret = response;
+	               error(function (data, status, headers, config) {
+	                   ret = status;
 	               }).then(function (response) {alert(ret); });
 	    };
 	    this.getMessageHome = function () {

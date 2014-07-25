@@ -7,11 +7,11 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using RoutingNg.Models;
+using System.Text;
 
 namespace RoutingNg.Controllers
 {
-
-    
+      
     public class RestApiController : ApiController
     {
         // GET api/values
@@ -37,6 +37,8 @@ namespace RoutingNg.Controllers
 
         public string Post(Customer value)
         {
+            // This first line allows to verify the client.
+            string decodedToken = Encoding.UTF8.GetString(Convert.FromBase64String(ControllerContext.Request.Headers.Authorization.Parameter));           
             var a = value;
             return "Success";
         }
