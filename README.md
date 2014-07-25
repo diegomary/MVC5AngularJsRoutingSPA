@@ -1,7 +1,7 @@
 MVC5AngularJsRoutingSPA
 =======================
 
-An MVC5 Application that uses AngularJS routing system and Gets and Post Promises to MVC controllers
+An MVC5 Application that uses AngularJS routing system and Gets and Posts Promises to MVC controllers
 
 The application is intended to supply information on Angular Routing and to give a start with the interaction between promises in AngularJs and the Backend system.
 
